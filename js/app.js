@@ -4,19 +4,59 @@ document.addEventListener("DOMContentLoaded", () => {
   const modalBody = document.getElementById("modalBody");
   const modalTitle = document.getElementById("modalTitle");
   const btnClose = document.getElementById("btnCloseModal");
+  const searchInput = document.getElementById("searchInput");
+  const filterBtns = document.querySelectorAll(".chip-btn");
 
-  modulosData.forEach((mod) => {
-    const card = document.createElement("article");
-    card.className = "card-modulo";
-    card.innerHTML = `
-      <h3>${mod.nombre}</h3>
-      <div class="docente">Docente: ${mod.docente}</div>
-      <p>${mod.resumen}</p>
-      <button class="btn-ver" data-id="${mod.id}">Ver Ficha Completa</button>
-    `;
-    container.appendChild(card);
+  let currentFilter = "all";
+
+  // Función para renderizar tarjetas
+  function renderModulos() {
+    container.innerHTML = "";
+    const searchTerm = searchInput.value.toLowerCase().trim();
+
+    const filtered = modulosData.filter((mod) => {
+      const matchDocente = currentFilter === "all" || mod.docente === currentFilter;
+      const matchSearch =
+        mod.nombre.toLowerCase().includes(searchTerm) ||
+        mod.resumen.toLowerCase().includes(searchTerm) ||
+        mod.herramientas.some((h) => h.toLowerCase().includes(searchTerm));
+
+      return matchDocente && matchSearch;
+    });
+
+    if (filtered.length === 0) {
+      container.innerHTML = `<p style="color:var(--mut); text-align:center; grid-column: 1/-1; padding:40px;">No se encontraron módulos que coincidan con la búsqueda.</p>`;
+      return;
+    }
+
+    filtered.forEach((mod) => {
+      const card = document.createElement("article");
+      card.className = "card-modulo";
+      card.innerHTML = `
+        <div>
+          <div class="docente-badge">⚡ ${mod.docente}</div>
+          <h3>${mod.nombre}</h3>
+          <p>${mod.resumen}</p>
+        </div>
+        <button class="btn-ver" data-id="${mod.id}">Ver Ficha Completa</button>
+      `;
+      container.appendChild(card);
+    });
+  }
+
+  // Escuchar búsqueda y filtros
+  searchInput.addEventListener("input", renderModulos);
+
+  filterBtns.forEach((btn) => {
+    btn.addEventListener("click", () => {
+      filterBtns.forEach((b) => b.classList.remove("active"));
+      btn.classList.add("active");
+      currentFilter = btn.getAttribute("data-filter");
+      renderModulos();
+    });
   });
 
+  // Modal interactivo
   container.addEventListener("click", (e) => {
     if (e.target.classList.contains("btn-ver")) {
       const id = e.target.getAttribute("data-id");
@@ -62,4 +102,7 @@ document.addEventListener("DOMContentLoaded", () => {
   modal.addEventListener("click", (e) => {
     if (e.target === modal) modal.close();
   });
+
+  // Carga inicial
+  renderModulos();
 });
