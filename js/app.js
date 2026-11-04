@@ -39,13 +39,14 @@ document.addEventListener("DOMContentLoaded", () => {
   }
 
   function normalizar(texto) {
+    if (!texto) return "";
     return texto.normalize("NFD").replace(/[\u0300-\u036f]/g, "").toLowerCase();
   }
 
   function renderModulos() {
     if (!container) return;
     container.innerHTML = "";
-    const searchTerm = normalizar(searchInput.value.trim());
+    const searchTerm = normalizar(searchInput ? searchInput.value.trim() : "");
 
     const filtered = modulosData.filter((mod) => {
       const matchDocente = currentFilter === "all" || mod.docente === currentFilter;
@@ -104,7 +105,6 @@ document.addEventListener("DOMContentLoaded", () => {
     });
   });
 
-  // Event listener para checkboxes de repaso
   if (container) {
     container.addEventListener("change", (e) => {
       if (e.target.classList.contains("chk-estado")) {
@@ -127,14 +127,28 @@ document.addEventListener("DOMContentLoaded", () => {
     if (!modalTitle || !modalBody || !modal) return;
     modalTitle.textContent = mod.nombre;
     
-    let opcionesHTML = "";
-    mod.quiz.opciones.forEach((opcion, index) => {
-      opcionesHTML += `
-        <button class="quiz-opcion" data-correcta="${index === mod.quiz.correcta}" data-index="${index}">
-          ${opcion}
-        </button>
-      `;
-    });
+    // Generar HTML para múltiples preguntas de quiz (Banco de preguntas)
+    let quizHTML = "";
+    if (mod.quiz && Array.isArray(mod.quiz)) {
+      mod.quiz.forEach((q, qIndex) => {
+        let opcionesHTML = "";
+        q.opciones.forEach((opcion, oIndex) => {
+          opcionesHTML += `
+            <button class="quiz-opcion" data-qindex="${qIndex}" data-correcta="${oIndex === q.correcta}">
+              ${opcion}
+            </button>
+          `;
+        });
+
+        quizHTML += `
+          <div class="quiz-pregunta-block mb-4 pb-3 border-bottom border-secondary" data-qblock="${qIndex}">
+            <p style="font-size:0.98rem; margin-bottom:10px; font-weight:600;">Pregunta ${qIndex + 1}: ${q.pregunta}</p>
+            <div class="opciones-grupo">${opcionesHTML}</div>
+            <p class="quiz-feedback-single mt-2 font-weight-bold" style="font-size:0.9rem; min-height:20px;"></p>
+          </div>
+        `;
+      });
+    }
 
     modalBody.innerHTML = `
       <div class="modal-section">
@@ -164,22 +178,23 @@ document.addEventListener("DOMContentLoaded", () => {
         </ul>
       </div>
       <div class="quiz-box">
-        <h4 style="color:var(--cy); margin-bottom:10px;">🧠 Quiz Rápido del Módulo</h4>
-        <p style="font-size:0.98rem; margin-bottom:14px; font-weight:600;">${mod.quiz.pregunta}</p>
-        <div id="quizContainer">${opcionesHTML}</div>
-        <p id="quizFeedback" style="font-weight:700; margin-top:12px; font-size:0.92rem; min-height:22px;"></p>
+        <h4 style="color:var(--cy); margin-bottom:14px;">🧠 Banco de Preguntas del Módulo</h4>
+        <div id="quizContainer">${quizHTML}</div>
       </div>
     `;
 
     const quizContainer = modalBody.querySelector("#quizContainer");
-    const feedback = modalBody.querySelector("#quizFeedback");
 
     quizContainer.addEventListener("click", (evt) => {
       const btnOpcion = evt.target.closest(".quiz-opcion");
       if (btnOpcion && !btnOpcion.disabled) {
+        const bloque = btnOpcion.closest("[data-qblock]");
+        const qIndex = parseInt(bloque.getAttribute("data-qblock"));
+        const preguntaData = mod.quiz[qIndex];
         const esCorrecta = btnOpcion.getAttribute("data-correcta") === "true";
-        const botones = quizContainer.querySelectorAll(".quiz-opcion");
-        
+        const botones = bloque.querySelectorAll(".quiz-opcion");
+        const feedback = bloque.querySelector(".quiz-feedback-single");
+
         botones.forEach(b => {
           b.disabled = true;
           if (b.getAttribute("data-correcta") === "true") {
@@ -191,10 +206,10 @@ document.addEventListener("DOMContentLoaded", () => {
 
         if (esCorrecta) {
           feedback.style.color = "var(--gr)";
-          feedback.textContent = "¡Correcto! 🎉 " + mod.quiz.explicacion;
+          feedback.textContent = "¡Correcto! 🎉 " + preguntaData.explicacion;
         } else {
           feedback.style.color = "var(--mg)";
-          feedback.textContent = "Incorrecto. ❌ " + mod.quiz.explicacion;
+          feedback.textContent = "Incorrecto. ❌ " + preguntaData.explicacion;
         }
       }
     });
