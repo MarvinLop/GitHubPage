@@ -18,12 +18,26 @@ const modulosData = [
       { nombre: "MDN Web Docs - C# & Web", url: "https://developer.mozilla.org/es/" }
     ],
     evidencias: "https://github.com/MarvinLop/GitHubPage",
-    quiz: {
-      pregunta: "¿Qué patrón o enfoque de bases de datos se utiliza comúnmente con ASP.NET para mapear clases a tablas de forma automática?",
-      opciones: ["Code First", "Manual Directo con Archivos Planos", "Consultas directas sin modelo", "Estructura NoSQL Estática"],
-      correcta: 0,
-      explicacion: "Code First permite definir el modelo de datos escribiendo clases en C# y generando la base de datos a partir de ellas."
-    }
+    quiz: [
+      {
+        pregunta: "¿Qué patrón o enfoque de bases de datos se utiliza con ASP.NET para mapear clases a tablas de forma automática?",
+        opciones: ["Code First", "Manual Directo con Archivos Planos", "Consultas directas sin modelo", "Estructura NoSQL Estática"],
+        correcta: 0,
+        explicacion: "Code First permite definir el modelo escribiendo clases en C# y generando la base de datos automáticamente."
+      },
+      {
+        pregunta: "¿Qué principio de la POO permite que una clase herede propiedades y métodos de otra?",
+        opciones: ["Encapsulamiento", "Herencia", "Polimorfismo", "Abstracción"],
+        correcta: 1,
+        explicacion: "La herencia permite reutilizar código haciendo que una clase hija herede de una clase padre."
+      },
+      {
+        pregunta: "¿Qué tecnología de vistas se utiliza comúnmente en ASP.NET Core para integrar HTML y C# de forma fluida?",
+        opciones: ["ASP.NET Razor", "PHP Nativo", "JSP Standard", "Ruby on Rails"],
+        correcta: 0,
+        explicacion: "Razor es la sintaxis de marcado que permite insertar código basado en .NET en páginas web."
+      }
+    ]
   },
   {
     id: "mod-2-moviles",
@@ -42,12 +56,26 @@ const modulosData = [
       { nombre: "Documentación oficial de .NET MAUI", url: "https://learn.microsoft.com/es-es/dotnet/maui/" }
     ],
     evidencias: "https://github.com/MarvinLop/GitHubPage",
-    quiz: {
-      pregunta: "¿Qué framework multiplataforma moderno de Microsoft se utiliza para desarrollar aplicaciones móviles y de escritorio en este módulo?",
-      opciones: ["Flutter", ".NET MAUI", "React Native", "Xamarin Classic"],
-      correcta: 1,
-      explicacion: ".NET MAUI es la evolución moderna de Xamarin.Forms para crear apps nativas multiplataforma con C# y XAML."
-    }
+    quiz: [
+      {
+        pregunta: "¿Qué framework multiplataforma moderno de Microsoft se utiliza para desarrollar aplicaciones móviles en este módulo?",
+        opciones: ["Flutter", ".NET MAUI", "React Native", "Xamarin Classic"],
+        correcta: 1,
+        explicacion: ".NET MAUI es la evolución oficial para crear apps nativas multiplataforma con C# y XAML."
+      },
+      {
+        pregunta: "¿Qué lenguaje basado en XML se utiliza en .NET MAUI para diseñar la estructura visual de las interfaces?",
+        opciones: ["XAML", "HTML5", "JSON", "Markdown"],
+        correcta: 0,
+        explicacion: "XAML es el lenguaje de marcado basado en XML empleado para inicializar instancias y propiedades de objetos."
+      },
+      {
+        pregunta: "¿Dónde se ejecutan comúnmente las pruebas de rendimiento y despliegue de los componentes móviles desarrollados?",
+        opciones: ["Emuladores de dispositivos / Dispositivos físicos", "Bloc de notas estático", "Servidores FTP remotos", "Consolas de comandos de texto plano"],
+        correcta: 0,
+        explicacion: "Los emuladores o dispositivos conectados permiten validar el comportamiento táctil y visual en tiempo real."
+      }
+    ]
   },
   {
     id: "mod-3-ingles",
@@ -65,12 +93,26 @@ const modulosData = [
       { nombre: "Microsoft Learn Documentation", url: "https://learn.microsoft.com/es-es/" }
     ],
     evidencias: "https://github.com/MarvinLop/GitHubPage",
-    quiz: {
-      pregunta: "¿Qué marco de trabajo ágil se aborda en las prácticas y terminología de este módulo?",
-      opciones: ["Scrum", "Waterfall Tradicional", "Prince2", "Modelo en Cascada Estricto"],
-      correcta: 0,
-      explicacion: "Scrum es el framework ágil estándar basado en sprints, roles y reuniones para gestionar proyectos de software."
-    }
+    quiz: [
+      {
+        pregunta: "¿Qué marco de trabajo ágil se aborda en las prácticas y terminología técnica de este módulo?",
+        opciones: ["Scrum", "Waterfall Tradicional", "Prince2", "Modelo en Cascada Estricto"],
+        correcta: 0,
+        explicacion: "Scrum es el framework ágil estándar basado en iteraciones (sprints) para la gestión de proyectos tecnológicos."
+      },
+      {
+        pregunta: "¿Qué significan las siglas CRUD en operaciones de bases de datos y soporte técnico?",
+        opciones: ["Create, Read, Update, Delete", "Compile, Run, Undergo, Debug", "Control, Rate, Use, Data", "Copy, Restore, Upload, Drive"],
+        correcta: 0,
+        explicacion: "CRUD representa las cuatro operaciones básicas de almacenamiento persistente: Crear, Leer, Actualizar y Borrar."
+      },
+      {
+        pregunta: "¿Por qué es importante el dominio del vocabulario técnico en inglés en el desarrollo de software?",
+        opciones: ["Para leer documentación oficial, APIs y colaborar en equipos globales", "Para escribir código más rápido en el teclado", "Para evitar el uso de bases de datos", "Para compilar archivos ejecutables .exe"],
+        correcta: 0,
+        explicacion: "La gran mayoría de la documentación de tecnologías y estándares de la industria se encuentra originalmente en inglés."
+      }
+    ]
   },
   {
     id: "mod-4-empresa",
