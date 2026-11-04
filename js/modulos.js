@@ -16,7 +16,12 @@ const modulosData = [
     recursos: [
       { nombre: "Documentación de .NET", url: "https://learn.microsoft.com/es-es/dotnet/" }
     ],
-    evidencias: "https://github.com/marvinlop/GitHubPage"
+    evidencias: "https://github.com/marvinlop/GitHubPage",
+    quiz: {
+      pregunta: "¿Qué patrón o enfoque de bases de datos se utiliza comúnmente con ASP.NET para mapear clases a tablas?",
+      opciones: ["Code First", "Manual Directo", "Solo Archivos TXT"],
+      correcta: 0
+    }
   },
   {
     id: "mod-2-moviles",
@@ -34,7 +39,12 @@ const modulosData = [
     recursos: [
       { nombre: "Documentación de .NET MAUI", url: "https://learn.microsoft.com/es-es/dotnet/maui/" }
     ],
-    evidencias: "https://github.com/marvinlop/GitHubPage"
+    evidencias: "https://github.com/marvinlop/GitHubPage",
+    quiz: {
+      pregunta: "¿Qué framework multiplataforma se utiliza en este módulo para desarrollar componentes móviles?",
+      opciones: ["Flutter", ".NET MAUI", "React Native"],
+      correcta: 1
+    }
   },
   {
     id: "mod-3-ingles",
@@ -51,7 +61,12 @@ const modulosData = [
     recursos: [
       { nombre: "Microsoft Learn", url: "https://learn.microsoft.com/es-es/" }
     ],
-    evidencias: "https://github.com/marvinlop/GitHubPage"
+    evidencias: "https://github.com/marvinlop/GitHubPage",
+    quiz: {
+      pregunta: "¿Qué marco de trabajo ágil se aborda en las prácticas de este módulo?",
+      opciones: ["Scrum", "Waterfall", "Prince2"],
+      correcta: 0
+    }
   },
   {
     id: "mod-4-empresa",
@@ -70,7 +85,12 @@ const modulosData = [
       { nombre: "Prestashop Documentation", url: "https://devdocs.prestashop-project.org/" },
       { nombre: "Portal MIPYME", url: "https://www.minec.gob.sv" }
     ],
-    evidencias: "https://github.com/marvinlop/GitHubPage"
+    evidencias: "https://github.com/marvinlop/GitHubPage",
+    quiz: {
+      pregunta: "¿Qué plataforma de comercio electrónico se implementa para tiendas virtuales?",
+      opciones: ["Prestashop", "WordPress básico", "Excel"],
+      correcta: 0
+    }
   },
 
   // --- MÓDULOS DE PROFESOR JAVIER MINEROS ---
@@ -89,7 +109,12 @@ const modulosData = [
     recursos: [
       { nombre: "Clases INDEL", url: "https://clases.edu.sv" }
     ],
-    evidencias: "https://github.com/marvinlop/GitHubPage"
+    evidencias: "https://github.com/marvinlop/GitHubPage",
+    quiz: {
+      pregunta: "¿Cuál es el propósito principal de este módulo de orientación?",
+      opciones: ["Establecer lineamientos y equipos de trabajo del tercer año", "Programar en C++ avanzado", "Instalar redes físicas"],
+      correcta: 0
+    }
   },
   {
     id: "mod-3-2",
@@ -107,7 +132,12 @@ const modulosData = [
     recursos: [
       { nombre: "Microsoft Learn", url: "https://learn.microsoft.com/es-es/" }
     ],
-    evidencias: "https://github.com/marvinlop/GitHubPage"
+    evidencias: "https://github.com/marvinlop/GitHubPage",
+    quiz: {
+      pregunta: "¿Qué tipo de diagramas se utilizan para el modelado de software en este módulo?",
+      opciones: ["Diagramas UML", "Mapas conceptuales simples", "Hojas de cálculo"],
+      correcta: 0
+    }
   },
   {
     id: "mod-3-3",
@@ -126,7 +156,12 @@ const modulosData = [
       { nombre: "Documentación de MySQL", url: "https://dev.mysql.com/doc/" },
       { nombre: "Microsoft Power BI Docs", url: "https://learn.microsoft.com/es-es/power-bi/" }
     ],
-    evidencias: "https://github.com/marvinlop/GitHubPage"
+    evidencias: "https://github.com/marvinlop/GitHubPage",
+    quiz: {
+      pregunta: "¿Qué herramienta se utiliza para el análisis de datos y creación de reportes visuales?",
+      opciones: ["Power BI", "Bloc de notas", "Paint"],
+      correcta: 0
+    }
   },
   {
     id: "mod-3-4",
@@ -144,7 +179,12 @@ const modulosData = [
     recursos: [
       { nombre: "Documentación oficial de Python", url: "https://docs.python.org/es/3/" }
     ],
-    evidencias: "https://github.com/marvinlop/GitHubPage"
+    evidencias: "https://github.com/marvinlop/GitHubPage",
+    quiz: {
+      pregunta: "¿Qué lenguaje se emplea en las guías individuales de este módulo de documentación?",
+      opciones: ["Python", "Assembly", "Fortran"],
+      correcta: 0
+    }
   },
   {
     id: "mod-3-8",
@@ -162,6 +202,11 @@ const modulosData = [
     recursos: [
       { nombre: "MDN Web Docs", url: "https://developer.mozilla.org/es/" }
     ],
-    evidencias: "https://github.com/marvinlop/GitHubPage"
+    evidencias: "https://github.com/marvinlop/GitHubPage",
+    quiz: {
+      pregunta: "¿Qué plataforma se utiliza para alojar y desplegar este portal de proyecto innovador?",
+      opciones: ["GitHub Pages", "Un servidor local sin salida", "Disco duro local"],
+      correcta: 0
+    }
   }
 ];
