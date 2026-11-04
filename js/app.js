@@ -65,7 +65,6 @@ document.addEventListener("DOMContentLoaded", () => {
   function abrirFicha(mod) {
     modalTitle.textContent = mod.nombre;
     
-    // Generar opciones del quiz dinámicamente
     let opcionesHTML = "";
     mod.quiz.opciones.forEach((opcion, index) => {
       opcionesHTML += `
@@ -110,7 +109,6 @@ document.addEventListener("DOMContentLoaded", () => {
       </div>
     `;
 
-    // Lógica interactiva del Quiz dentro del modal
     const quizContainer = modalBody.querySelector("#quizContainer");
     const feedback = modalBody.querySelector("#quizFeedback");
 
