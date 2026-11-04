@@ -1,4 +1,79 @@
 const modulosData = [
+  // --- MÓDULOS DE PROFESOR FRANCISCO ARCIDES ---
+  {
+    id: "btv-3-1",
+    nombre: "BTVDS 3.1: Desarrollo de aplicaciones de software para la solución de problemas",
+    docente: "Francisco Arcides",
+    resumen: "Construcción de soluciones de software robustas aplicando programación orientada a objetos, acceso a datos y Razor Pages.",
+    aprendizajes: [
+      "Implementación de Programación Orientada a Objetos (POO), herencia y polimorfismo.",
+      "Acceso a datos y conexión con bases de datos relacionales.",
+      "Desarrollo de aplicaciones utilizando Code First y ASP.NET Razor."
+    ],
+    instrumentos: ["Rúbrica de Prácticas de POO", "Evaluación de Prototipo Funcional de Software"],
+    programas: ["Visual Studio", "Visual Studio Code", "SQL Server"],
+    herramientas: ["C#", ".NET", "ASP.NET Razor", "Entity Framework"],
+    recursos: [
+      { nombre: "Documentación de .NET", url: "https://learn.microsoft.com/es-es/dotnet/" }
+    ],
+    evidencias: "https://github.com/marvinlop/GitHubPage"
+  },
+  {
+    id: "mod-2-moviles",
+    nombre: "Módulo 2: Desarrollo de componentes para dispositivos móviles",
+    docente: "Francisco Arcides",
+    resumen: "Diseño y desarrollo de interfaces y componentes interactivos para plataformas móviles utilizando .NET MAUI.",
+    aprendizajes: [
+      "Creación de interfaces multiplataforma con .NET MAUI.",
+      "Desarrollo y estructuración de prácticas enfocadas en componentes móviles (Prácticas 6 a 9).",
+      "Optimización y pruebas de rendimiento en emuladores."
+    ],
+    instrumentos: ["Lista de cotejo para Prácticas .NET MAUI", "Autoevaluación Práctica 9"],
+    programas: ["Visual Studio", "Emulador de Android / iOS"],
+    herramientas: [".NET MAUI", "C#", "XAML"],
+    recursos: [
+      { nombre: "Documentación de .NET MAUI", url: "https://learn.microsoft.com/es-es/dotnet/maui/" }
+    ],
+    evidencias: "https://github.com/marvinlop/GitHubPage"
+  },
+  {
+    id: "mod-3-ingles",
+    nombre: "Módulo 3: Conversación de inglés sobre mantenimiento de sistemas informáticos",
+    docente: "Francisco Arcides",
+    resumen: "Aplicación de vocabulario técnico en inglés enfocado en metodologías ágiles de desarrollo y soporte informático.",
+    aprendizajes: [
+      "Dominio de términos técnicos en inglés para soporte y mantenimiento de sistemas.",
+      "Aplicación de marcos de trabajo ágiles (Scrum) y operaciones CRUD con enfoque técnico."
+    ],
+    instrumentos: ["Evaluación de Práctica 10 (Scrum)", "Guía de Práctica 11 (Base de datos CRUD-IA)"],
+    programas: ["Plataformas de desarrollo y comunicación"],
+    herramientas: ["Scrum Framework", "Glosarios técnicos bilingües"],
+    recursos: [
+      { nombre: "Microsoft Learn", url: "https://learn.microsoft.com/es-es/" }
+    ],
+    evidencias: "https://github.com/marvinlop/GitHubPage"
+  },
+  {
+    id: "mod-4-empresa",
+    nombre: "Módulo 4: Puesta en marcha de la empresa en asociatividad cooperativa",
+    docente: "Francisco Arcides",
+    resumen: "Estructuración de modelos de negocio tecnológicos, plataformas de comercio electrónico y proyectos de desarrollo integral.",
+    aprendizajes: [
+      "Implementación de tiendas virtuales y plataformas de comercio electrónico con Prestashop.",
+      "Desarrollo de proyectos utilizando WinForms, ASPX y .NET MAUI en un entorno cooperativo.",
+      "Integración de prototipos con hardware (Proyectos tipo Arduino y Agusine)."
+    ],
+    instrumentos: ["Rúbrica de Proyecto Final .NET MAUI", "Evaluación de Prestashop Individual", "Guía de Proyecto Winform y ASPX"],
+    programas: ["Visual Studio", "Prestashop", "XAMPP"],
+    herramientas: ["PHP", "MySQL", "WinForms", "ASPX", "Arduino"],
+    recursos: [
+      { nombre: "Prestashop Documentation", url: "https://devdocs.prestashop-project.org/" },
+      { nombre: "Portal MIPYME", url: "https://www.minec.gob.sv" }
+    ],
+    evidencias: "https://github.com/marvinlop/GitHubPage"
+  },
+
+  // --- MÓDULOS DE PROFESOR JAVIER MINEROS ---
   {
     id: "mod-3-0",
     nombre: "Módulo 3.0: Orientación de estudiantes al proceso educativo del tercer año",
@@ -86,78 +161,6 @@ const modulosData = [
     herramientas: ["Control de versiones", "HTML/CSS/JS", "Documentación de proyectos"],
     recursos: [
       { nombre: "MDN Web Docs", url: "https://developer.mozilla.org/es/" }
-    ],
-    evidencias: "https://github.com/marvinlop/GitHubPage"
-  },
-  {
-    id: "btv-3-1",
-    nombre: "BTVDS 3.1: Desarrollo de aplicaciones de software para la solución de problemas",
-    docente: "Arcides Canales",
-    resumen: "Construcción de soluciones de software robustas aplicando programación orientada a objetos, acceso a datos y Razor Pages.",
-    aprendizajes: [
-      "Implementación de Programación Orientada a Objetos (POO), herencia y polimorfismo.",
-      "Acceso a datos y conexión con bases de datos relacionales.",
-      "Desarrollo de aplicaciones utilizando Code First y ASP.NET Razor."
-    ],
-    instrumentos: ["Rúbrica de Prácticas de POO", "Evaluación de Prototipo Funcional de Software"],
-    programas: ["Visual Studio", "Visual Studio Code", "SQL Server"],
-    herramientas: ["C#", ".NET", "ASP.NET Razor", "Entity Framework"],
-    recursos: [
-      { nombre: "Documentación de .NET", url: "https://learn.microsoft.com/es-es/dotnet/" }
-    ],
-    evidencias: "https://github.com/marvinlop/GitHubPage"
-  },
-  {
-    id: "mod-2-moviles",
-    nombre: "Módulo 2: Desarrollo de componentes para dispositivos móviles",
-    docente: "Arcides Canales",
-    resumen: "Diseño y desarrollo de interfaces y componentes interactivos para plataformas móviles utilizando .NET MAUI.",
-    aprendizajes: [
-      "Creación de interfaces multiplataforma con .NET MAUI.",
-      "Desarrollo y estructuración de prácticas enfocadas en componentes móviles (Prácticas 6 a 9).",
-      "Optimización y pruebas de rendimiento en emuladores."
-    ],
-    instrumentos: ["Lista de cotejo para Prácticas .NET MAUI", "Autoevaluación Práctica 9"],
-    programas: ["Visual Studio", "Emulador de Android / iOS"],
-    herramientas: [".NET MAUI", "C#", "XAML"],
-    recursos: [
-      { nombre: "Documentación de .NET MAUI", url: "https://learn.microsoft.com/es-es/dotnet/maui/" }
-    ],
-    evidencias: "https://github.com/marvinlop/GitHubPage"
-  },
-  {
-    id: "mod-3-ingles",
-    nombre: "Módulo 3: Conversación de inglés sobre mantenimiento de sistemas informáticos",
-    docente: "Arcides Canales",
-    resumen: "Aplicación de vocabulario técnico en inglés enfocado en metodologías ágiles de desarrollo y soporte informático.",
-    aprendizajes: [
-      "Dominio de términos técnicos en inglés para soporte y mantenimiento de sistemas.",
-      "Aplicación de marcos de trabajo ágiles (Scrum) y operaciones CRUD con enfoque técnico."
-    ],
-    instrumentos: ["Evaluación de Práctica 10 (Scrum)", "Guía de Práctica 11 (Base de datos CRUD-IA)"],
-    programas: ["Plataformas de desarrollo y comunicación"],
-    herramientas: ["Scrum Framework", "Glosarios técnicos bilingües"],
-    recursos: [
-      { nombre: "Microsoft Learn", url: "https://learn.microsoft.com/es-es/" }
-    ],
-    evidencias: "https://github.com/marvinlop/GitHubPage"
-  },
-  {
-    id: "mod-4-empresa",
-    nombre: "Módulo 4: Puesta en marcha de la empresa en asociatividad cooperativa",
-    docente: "Arcides Canales",
-    resumen: "Estructuración de modelos de negocio tecnológicos, plataformas de comercio electrónico y proyectos de desarrollo integral.",
-    aprendizajes: [
-      "Implementación de tiendas virtuales y plataformas de comercio electrónico con Prestashop.",
-      "Desarrollo de proyectos utilizando WinForms, ASPX y .NET MAUI en un entorno cooperativo.",
-      "Integración de prototipos con hardware (Proyectos tipo Arduino y Agusine)."
-    ],
-    instrumentos: ["Rúbrica de Proyecto Final .NET MAUI", "Evaluación de Prestashop Individual", "Guía de Proyecto Winform y ASPX"],
-    programas: ["Visual Studio", "Prestashop", "XAMPP"],
-    herramientas: ["PHP", "MySQL", "WinForms", "ASPX", "Arduino"],
-    recursos: [
-      { nombre: "Prestashop Documentation", url: "https://devdocs.prestashop-project.org/" },
-      { nombre: "Portal MIPYME", url: "https://www.minec.gob.sv" }
     ],
     evidencias: "https://github.com/marvinlop/GitHubPage"
   }
