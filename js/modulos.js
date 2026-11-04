@@ -2,136 +2,163 @@ const modulosData = [
   {
     id: "mod-3-0",
     nombre: "Módulo 3.0: Orientación de estudiantes al proceso educativo del tercer año",
-    docente: "INDEL",
-    resumen: "Inducción y lineamientos generales para el desarrollo del tercer año de bachillerato técnico vocacional.",
+    docente: "Javier Mineros",
+    resumen: "Inducción, organización de equipos de trabajo y lineamientos generales del proceso educativo del tercer año.",
     aprendizajes: [
-      "Conocimiento de normativas institucionales y pautas de convivencia.",
-      "Planificación y organización de las metas académicas y técnicas del año."
+      "Establecimiento y organización de equipos de trabajo efectivos.",
+      "Manejo de normativas, portafolios y espacios de códigos QR institucionales."
     ],
-    instrumentos: ["Guía de orientación institucional", "Registro de asistencia y acuerdos"],
-    programas: ["Google Classroom", "Google Meet"],
-    herramientas: ["Documentos institucionales", "Plataformas educativas"],
-    recursos: [{ nombre: "Portal Educativo INDEL", url: "https://clases.edu.sv" }],
+    instrumentos: ["Guía de orientación", "Portafolio del Módulo 3.0"],
+    programas: ["Google Classroom", "Google Drive"],
+    herramientas: ["Plataformas institucionales", "Herramientas colaborativas"],
+    recursos: [
+      { nombre: "Clases INDEL", url: "https://clases.edu.sv" }
+    ],
     evidencias: "https://github.com/marvinlop/GitHubPage"
   },
   {
     id: "mod-3-2",
     nombre: "Módulo 3.2: Mantenimiento y aseguramiento de la operación del sistema informático",
-    docente: "INDEL",
-    resumen: "Diagnóstico, prevención y corrección de fallas en equipos informáticos y sistemas de software.",
+    docente: "Javier Mineros",
+    resumen: "Diagnóstico, modelado UML, plantillas SLA, control de monitoreo y creación de dashboards y planes de contingencia.",
     aprendizajes: [
-      "Mantenimiento preventivo y correctivo de hardware y software.",
-      "Resguardo de información y aseguramiento de respaldos (backups)."
+      "Modelado de software mediante diagramas UML y uso de plantillas SLA.",
+      "Creación de dashboards de monitoreo, registro y planes de contingencia técnica.",
+      "Ejecución de prácticas de mantenimiento preventivo y correctivo."
     ],
-    instrumentos: ["Bitácora de mantenimiento técnico", "Lista de cotejo para diagnóstico de equipos"],
-    programas: ["Herramientas de diagnóstico de sistema", "Sistemas operativos"],
-    herramientas: ["Software de respaldo", "Utilidades del sistema"],
-    recursos: [{ nombre: "Microsoft Learn", url: "https://learn.microsoft.com/es-es/" }],
+    instrumentos: ["Rúbrica de Dashboard y Práctica", "Evaluación de Modelado UML y Plantilla SLA"],
+    programas: ["Visual Studio Code", "Herramientas de Monitoreo", "Herramientas de Diagramación"],
+    herramientas: ["UML", "SLA", "Dashboards técnicos"],
+    recursos: [
+      { nombre: "Microsoft Learn", url: "https://learn.microsoft.com/es-es/" }
+    ],
     evidencias: "https://github.com/marvinlop/GitHubPage"
   },
   {
     id: "mod-3-3",
     nombre: "Módulo 3.3: Administración de Bases de Datos",
     docente: "Javier Mineros",
-    resumen: "Gestión avanzada, optimización, seguridad y control de acceso en sistemas de bases de datos relacionales.",
+    resumen: "Gestión, optimización y ejecución de bases de datos relacionales, herramientas de análisis con Power BI y actividades remediales.",
     aprendizajes: [
-      "Configuración de usuarios, roles y permisos de seguridad en bases de datos.",
-      "Optimización de consultas y creación de respaldos automatizados."
+      "Instalación y configuración de motores de bases de datos y Power BI.",
+      "Ejecución de consultas avanzadas, reportes y actividades de recuperación (Semanas 8, 9, 10 y final).",
+      "Implementación de dashboards analíticos y control de datos."
     ],
-    instrumentos: ["Rúbrica de administración y seguridad SQL", "Guía práctica de respaldos"],
-    programas: ["MySQL Workbench", "SQL Server Management Studio", "XAMPP"],
-    herramientas: ["SQL", "MySQL", "phpMyAdmin"],
-    recursos: [{ nombre: "Documentación de MySQL", url: "https://dev.mysql.com/doc/" }],
+    instrumentos: ["Rúbrica de Ejecución de Base de Datos", "Evaluación de Actividad Power BI"],
+    programas: ["SQL Server", "Power BI", "MySQL Workbench"],
+    herramientas: ["SQL", "Power BI Desktop", "Transact-SQL"],
+    recursos: [
+      { nombre: "Documentación de MySQL", url: "https://dev.mysql.com/doc/" },
+      { nombre: "Microsoft Power BI Docs", url: "https://learn.microsoft.com/es-es/power-bi/" }
+    ],
     evidencias: "https://github.com/marvinlop/GitHubPage"
   },
   {
     id: "mod-3-4",
     nombre: "Módulo 3.4: Elaboración de documentación de Sistemas informáticos",
-    docente: "INDEL",
-    resumen: "Redacción de manuales técnicos, manuales de usuario y especificaciones funcionales de software.",
+    docente: "Javier Mineros",
+    resumen: "Creación de guías en Python, arquitectura de software, arquitectura en fases y documentación técnica de proyectos.",
     aprendizajes: [
-      "Estructuración de manuales técnicos y guías de usuario claras.",
-      "Documentación de flujos de procesos y diagramas de arquitectura de software."
+      "Desarrollo de aplicaciones y guías individuales utilizando Python.",
+      "Documentación estructurada por fases: Arquitectura del software, desarrollo y documentos finales.",
+      "Elaboración de manuales y especificaciones técnicas."
     ],
-    instrumentos: ["Guía de estandarización de documentos", "Rúbrica de manual técnico"],
-    programas: ["Visual Studio Code", "Markdown Editors", "Microsoft Word"],
-    herramientas: ["Markdown", "Plantillas de documentación", "Git"],
-    recursos: [{ nombre: "Docs de GitHub", url: "https://docs.github.com/es" }],
+    instrumentos: ["Rúbrica de Fases de Documentación (Fase 1 a Fase 7)", "Evaluación de Guía Python"],
+    programas: ["Visual Studio Code", "Python Interpreter", "Editores de Markdown"],
+    herramientas: ["Python", "Markdown", "Diagramas de Arquitectura"],
+    recursos: [
+      { nombre: "Documentación oficial de Python", url: "https://docs.python.org/es/3/" }
+    ],
     evidencias: "https://github.com/marvinlop/GitHubPage"
   },
   {
     id: "mod-3-8",
     nombre: "Módulo 3.8: Proyecto innovador de Desarrollo de Software",
-    docente: "INDEL",
-    resumen: "Diseño y construcción de una solución tecnológica integral orientada a solventar una necesidad real.",
+    docente: "Javier Mineros",
+    resumen: "Desarrollo, avance, prácticas semanales, manuales de sistema y entrega final del proyecto tecnológico innovador.",
     aprendizajes: [
-      "Aplicación del ciclo de vida del desarrollo de software en un proyecto real.",
-      "Integración de bases de datos, interfaces web y lógica de negocio."
+      "Gestión de avances de proyectos (10%, 15% y entregas finales).",
+      "Elaboración de manuales de sistema y prácticas orientadas a resultados.",
+      "Defensa y exposición de proyectos de desarrollo de software."
     ],
-    instrumentos: ["Evaluación de prototipo funcional", "Rúbrica de defensa del proyecto"],
+    instrumentos: ["Rúbrica de Entrega Final de Proyecto", "Evaluación de Avances e Informes"],
     programas: ["Visual Studio Code", "Git", "GitHub Pages"],
-    herramientas: ["HTML5", "CSS3", "JavaScript", "Control de versiones"],
-    recursos: [{ nombre: "MDN Web Docs", url: "https://developer.mozilla.org/es/" }],
+    herramientas: ["Control de versiones", "HTML/CSS/JS", "Documentación de proyectos"],
+    recursos: [
+      { nombre: "MDN Web Docs", url: "https://developer.mozilla.org/es/" }
+    ],
     evidencias: "https://github.com/marvinlop/GitHubPage"
   },
   {
-    id: "mod-btv-3-1",
+    id: "btv-3-1",
     nombre: "BTVDS 3.1: Desarrollo de aplicaciones de software para la solución de problemas",
     docente: "Arcides Canales",
-    resumen: "Creación de aplicaciones funcionales enfocadas en resolver problemáticas específicas del entorno.",
+    resumen: "Construcción de soluciones de software robustas aplicando programación orientada a objetos, acceso a datos y Razor Pages.",
     aprendizajes: [
-      "Programación estructurada y orientada a objetos para la lógica de aplicaciones.",
-      "Validación de requerimientos del usuario y pruebas de software."
+      "Implementación de Programación Orientada a Objetos (POO), herencia y polimorfismo.",
+      "Acceso a datos y conexión con bases de datos relacionales.",
+      "Desarrollo de aplicaciones utilizando Code First y ASP.NET Razor."
     ],
-    instrumentos: ["Guía de desarrollo de software", "Lista de pruebas unitarias"],
-    programas: ["Visual Studio Code", "Navegador Web"],
-    herramientas: ["JavaScript", "HTML/CSS", "Git"],
-    recursos: [{ nombre: "MDN Web Docs", url: "https://developer.mozilla.org/es/" }],
+    instrumentos: ["Rúbrica de Prácticas de POO", "Evaluación de Prototipo Funcional de Software"],
+    programas: ["Visual Studio", "Visual Studio Code", "SQL Server"],
+    herramientas: ["C#", ".NET", "ASP.NET Razor", "Entity Framework"],
+    recursos: [
+      { nombre: "Documentación de .NET", url: "https://learn.microsoft.com/es-es/dotnet/" }
+    ],
     evidencias: "https://github.com/marvinlop/GitHubPage"
   },
   {
-    id: "mod-movil-2",
+    id: "mod-2-moviles",
     nombre: "Módulo 2: Desarrollo de componentes para dispositivos móviles",
     docente: "Arcides Canales",
-    resumen: "Construcción de interfaces y módulos adaptados para plataformas móviles.",
+    resumen: "Diseño y desarrollo de interfaces y componentes interactivos para plataformas móviles utilizando .NET MAUI.",
     aprendizajes: [
-      "Diseño adaptable y responsivo enfocado en pantallas táctiles.",
-      "Estructuración de componentes reutilizables."
+      "Creación de interfaces multiplataforma con .NET MAUI.",
+      "Desarrollo y estructuración de prácticas enfocadas en componentes móviles (Prácticas 6 a 9).",
+      "Optimización y pruebas de rendimiento en emuladores."
     ],
-    instrumentos: ["Guía de diseño móvil responsivo", "Rúbrica de componentes"],
-    programas: ["Visual Studio Code", "Emuladores móviles"],
-    herramientas: ["CSS Flexbox/Grid", "Media Queries"],
-    recursos: [{ nombre: "Google Developers", url: "https://developers.google.com/" }],
+    instrumentos: ["Lista de cotejo para Prácticas .NET MAUI", "Autoevaluación Práctica 9"],
+    programas: ["Visual Studio", "Emulador de Android / iOS"],
+    herramientas: [".NET MAUI", "C#", "XAML"],
+    recursos: [
+      { nombre: "Documentación de .NET MAUI", url: "https://learn.microsoft.com/es-es/dotnet/maui/" }
+    ],
     evidencias: "https://github.com/marvinlop/GitHubPage"
   },
   {
-    id: "mod-ingles-3",
+    id: "mod-3-ingles",
     nombre: "Módulo 3: Conversación de inglés sobre mantenimiento de sistemas informáticos",
-    docente: "INDEL",
-    resumen: "Vocabulario técnico en inglés aplicado al soporte técnico y mantenimiento de equipos.",
+    docente: "Arcides Canales",
+    resumen: "Aplicación de vocabulario técnico en inglés enfocado en metodologías ágiles de desarrollo y soporte informático.",
     aprendizajes: [
-      "Términos técnicos en inglés para hardware, software y redes.",
-      "Simulación de atención a usuarios y reporte de fallas en inglés."
+      "Dominio de términos técnicos en inglés para soporte y mantenimiento de sistemas.",
+      "Aplicación de marcos de trabajo ágiles (Scrum) y operaciones CRUD con enfoque técnico."
     ],
-    instrumentos: ["Lista de vocabulario técnico", "Evaluación oral de soporte"],
-    programas: ["Google Meet", "Plataformas de comunicación"],
-    herramientas: ["Diccionarios técnicos", "Glosarios bilingües"],
-    recursos: [{ nombre: "Microsoft Learn Inglés", url: "https://learn.microsoft.com/" }],
+    instrumentos: ["Evaluación de Práctica 10 (Scrum)", "Guía de Práctica 11 (Base de datos CRUD-IA)"],
+    programas: ["Plataformas de desarrollo y comunicación"],
+    herramientas: ["Scrum Framework", "Glosarios técnicos bilingües"],
+    recursos: [
+      { nombre: "Microsoft Learn", url: "https://learn.microsoft.com/es-es/" }
+    ],
     evidencias: "https://github.com/marvinlop/GitHubPage"
   },
   {
-    id: "mod-empresa-4",
-    nombre: "Modúlo 4: Puesta en marcha de la empresa en asociatividad cooperativa",
-    docente: "INDEL",
-    resumen: "Fundamentos de asociatividad cooperativa y creación de modelos de emprendimiento tecnológico.",
+    id: "mod-4-empresa",
+    nombre: "Módulo 4: Puesta en marcha de la empresa en asociatividad cooperativa",
+    docente: "Arcides Canales",
+    resumen: "Estructuración de modelos de negocio tecnológicos, plataformas de comercio electrónico y proyectos de desarrollo integral.",
     aprendizajes: [
-      "Estructuración de planes de negocio bajo el modelo cooperativo.",
-      "Organización administrativa y financiera básica de una empresa."
+      "Implementación de tiendas virtuales y plataformas de comercio electrónico con Prestashop.",
+      "Desarrollo de proyectos utilizando WinForms, ASPX y .NET MAUI en un entorno cooperativo.",
+      "Integración de prototipos con hardware (Proyectos tipo Arduino y Agusine)."
     ],
-    instrumentos: ["Guía de plan de negocio cooperativo", "Evaluación de proyecto empresarial"],
-    programas: ["Hojas de cálculo", "Editores de texto"],
-    herramientas: ["Modelos Canvas", "Presupuestos"],
-    recursos: [{ nombre: "Portal MIPYME", url: "https://www.minec.gob.sv" }],
+    instrumentos: ["Rúbrica de Proyecto Final .NET MAUI", "Evaluación de Prestashop Individual", "Guía de Proyecto Winform y ASPX"],
+    programas: ["Visual Studio", "Prestashop", "XAMPP"],
+    herramientas: ["PHP", "MySQL", "WinForms", "ASPX", "Arduino"],
+    recursos: [
+      { nombre: "Prestashop Documentation", url: "https://devdocs.prestashop-project.org/" },
+      { nombre: "Portal MIPYME", url: "https://www.minec.gob.sv" }
+    ],
     evidencias: "https://github.com/marvinlop/GitHubPage"
   }
 ];
