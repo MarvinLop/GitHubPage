@@ -4,45 +4,198 @@
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>HUB Repaso 3.º DS «B» · Día 3 Lanzamiento v1.0</title>
+  <!-- Google Fonts -->
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Exo+2:wght@400;600;700&family=JetBrains+Mono:wght@400;600&family=Orbitron:wght@600;800&display=swap" rel="stylesheet">
+  <!-- Bootstrap 5 CSS -->
   <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet">
-  <link rel="stylesheet" href="css/styles.css">
+  <style>
+    :root {
+      --bg: #070a15; --panel: #0f1630; --panel2: #0b1124; --panel-border: rgba(34, 211, 238, 0.25);
+      --line: #222c55; --line2: #33407a; --tx: #e8edfb; --mut: #9ba7ce;
+      --cy: #22d3ee; --cy-glow: rgba(34, 211, 238, 0.35); --mg: #f046d2; --mg-glow: rgba(240, 70, 210, 0.35);
+      --gr: #34f5a0; --am: #ffb224; --fd: 'Orbitron', system-ui, sans-serif; --fb: 'Exo 2', system-ui, sans-serif;
+      color-scheme: dark;
+    }
+    [data-theme="light"] {
+      --bg: #f8fafc; --panel: #ffffff; --panel2: #f1f5f9; --panel-border: rgba(14, 116, 144, 0.3);
+      --line: #cbd5e1; --line2: #94a3b8; --tx: #0f172a; --mut: #475569;
+      --cy: #0e7490; --cy-glow: rgba(14, 116, 144, 0.25); --mg: #a21caf; --mg-glow: rgba(162, 28, 175, 0.25);
+      --gr: #047857; --am: #b45309; color-scheme: light;
+    }
+    * { box-sizing: border-box; margin: 0; padding: 0; }
+    body {
+      background: var(--bg); color: var(--tx); font-family: var(--fb);
+      line-height: 1.65; min-height: 100vh; padding-top: 75px;
+      transition: background 0.3s ease, color 0.3s ease;
+    }
+    .top-nav {
+      background: rgba(7, 10, 21, 0.92) !important;
+      backdrop-filter: blur(14px); border-bottom: 1px solid var(--line);
+    }
+    .marca { font-family: var(--fd); font-weight: 700; font-size: 1rem; color: var(--cy) !important; }
+    .hero-section {
+      padding: 55px 0 40px; border-bottom: 1px solid var(--line);
+      background: radial-gradient(circle at 85% 15%, rgba(34,211,238,0.08) 0%, transparent 50%), var(--panel2);
+    }
+    .header-badge {
+      display: inline-block; background: rgba(34, 211, 238, 0.12);
+      border: 1px solid var(--cy); color: var(--cy); padding: 6px 18px;
+      border-radius: 999px; font-size: 0.82rem; font-weight: 700;
+      letter-spacing: 1px; text-transform: uppercase;
+    }
+    .text-cyan { color: var(--cy) !important; }
+    .controls-bar {
+      background: var(--panel); border: 1px solid var(--line);
+      padding: 20px 24px; border-radius: 16px; margin-bottom: 25px;
+      box-shadow: 0 12px 35px rgba(0,0,0,0.25);
+    }
+    .search-box input {
+      background: var(--panel2) !important; border: 1px solid var(--line2) !important;
+      color: var(--tx) !important; border-radius: 10px !important; padding: 12px 18px !important;
+      font-family: var(--fb); font-size: 1rem;
+    }
+    .search-box input:focus {
+      border-color: var(--cy) !important; box-shadow: 0 0 15px var(--cy-glow) !important; outline: none;
+    }
+    .filter-chips { display: flex; gap: 10px; flex-wrap: wrap; }
+    .chip-btn {
+      background: var(--panel2); border: 1px solid var(--line2); color: var(--mut);
+      padding: 9px 18px; border-radius: 10px; font-weight: 600; font-size: 0.92rem;
+      cursor: pointer; transition: all 0.25s ease;
+    }
+    .chip-btn:hover, .chip-btn.active {
+      color: #04121a; background: var(--cy); border-color: var(--cy);
+      box-shadow: 0 0 18px var(--cy-glow); transform: translateY(-2px);
+    }
+    .grid-modulos {
+      display: grid; grid-template-columns: repeat(auto-fit, minmax(340px, 1fr)); gap: 26px;
+    }
+    .card-modulo {
+      background: var(--panel); border: 1px solid var(--line);
+      border-top: 4px solid var(--cy); border-radius: 18px; padding: 26px;
+      display: flex; flex-direction: column; justify-content: space-between;
+      transition: all 0.35s cubic-bezier(0.4, 0, 0.2, 1);
+    }
+    .card-modulo:hover {
+      transform: translateY(-6px); border-color: var(--cy);
+      box-shadow: 0 18px 40px rgba(0,0,0,0.45), 0 0 25px var(--cy-glow);
+    }
+    .card-modulo h3 { font-family: var(--fd); font-size: 1.2rem; line-height: 1.4; color: var(--tx); margin-bottom: 12px; }
+    .docente-badge {
+      display: inline-flex; align-items: center; gap: 6px; font-size: 0.82rem; font-weight: 700;
+      color: var(--mg); background: rgba(240, 70, 210, 0.1); padding: 4px 12px;
+      border-radius: 99px; margin-bottom: 14px; border: 1px solid rgba(240, 70, 210, 0.25);
+    }
+    .card-modulo p { color: var(--mut); font-size: 0.96rem; margin-bottom: 22px; flex-grow: 1; }
+    .card-footer-actions {
+      display: flex; align-items: center; justify-content: space-between;
+      gap: 14px; margin-top: 16px; padding-top: 16px; border-top: 1px dashed var(--line);
+    }
+    .btn-ver {
+      background: linear-gradient(135deg, #0891b2, var(--cy)); color: #04121a; border: 0;
+      padding: 11px 20px; border-radius: 10px; font-weight: 700; font-size: 0.92rem;
+      cursor: pointer; transition: all 0.25s; flex-grow: 1; text-align: center;
+    }
+    .btn-ver:hover { filter: brightness(1.15); box-shadow: 0 0 18px var(--cy-glow); transform: scale(1.02); }
+    .chk-repasado {
+      cursor: pointer; display: flex; align-items: center; gap: 8px;
+      font-size: 0.88rem; color: var(--gr); font-weight: 600; user-select: none;
+    }
+    .chk-repasado input { accent-color: var(--gr); width: 20px; height: 20px; cursor: pointer; }
+    
+    /* Modal Pro Profesional con scroll interno limpio */
+    dialog.modal-cyber {
+      background: var(--panel); color: var(--tx); border: 1px solid var(--cy);
+      border-radius: 22px; max-width: 800px; width: 94%; max-height: 88vh;
+      margin: auto; padding: 35px; box-shadow: 0 30px 70px rgba(0,0,0,0.85), 0 0 40px var(--cy-glow);
+      overflow-y: auto;
+    }
+    dialog.modal-cyber::backdrop { background: rgba(3, 7, 18, 0.85); backdrop-filter: blur(12px); }
+    .modal-header {
+      display: flex; justify-content: space-between; align-items: flex-start;
+      border-bottom: 1px solid var(--line); padding-bottom: 18px; margin-bottom: 22px;
+    }
+    .modal-header h2 { font-family: var(--fd); color: var(--cy); font-size: 1.4rem; }
+    .modal-section { margin-bottom: 24px; }
+    .modal-section h4 {
+      color: var(--gr); font-size: 0.86rem; letter-spacing: 1.2px; margin-bottom: 10px;
+      text-transform: uppercase; font-family: var(--fd); border-left: 3px solid var(--gr); padding-left: 8px;
+    }
+    .modal-section ul { padding-left: 20px; color: var(--mut); font-size: 0.96rem; }
+    .modal-section li { margin-bottom: 6px; }
+    .tags { display: flex; flex-wrap: wrap; gap: 8px; margin-top: 8px; }
+    .tag {
+      background: var(--panel2); border: 1px solid var(--line2); color: var(--tx);
+      padding: 5px 14px; border-radius: 999px; font-size: 0.88rem;
+    }
+    
+    /* Quiz Pro Interactivo con múltiples preguntas limpias */
+    .quiz-box {
+      background: rgba(34, 211, 238, 0.05); border: 1px solid var(--panel-border);
+      padding: 24px; border-radius: 16px; margin-top: 25px;
+    }
+    .quiz-pregunta-block {
+      background: var(--panel2); border: 1px solid var(--line);
+      padding: 18px; border-radius: 12px; margin-bottom: 20px;
+    }
+    .quiz-opcion {
+      display: block; width: 100%; text-align: left; background: var(--panel);
+      border: 1px solid var(--line2); color: var(--tx); padding: 12px 18px;
+      border-radius: 10px; margin-bottom: 10px; cursor: pointer; font-family: var(--fb);
+      transition: all 0.2s ease; font-size: 0.95rem;
+    }
+    .quiz-opcion:hover:not(:disabled) {
+      border-color: var(--cy); background: rgba(34, 211, 238, 0.1); transform: translateX(4px);
+    }
+    .quiz-opcion.correcta {
+      background: rgba(52, 245, 160, 0.18) !important; border-color: var(--gr) !important; color: var(--gr) !important; font-weight: 700;
+    }
+    .quiz-opcion.incorrecta {
+      background: rgba(240, 70, 210, 0.18) !important; border-color: var(--mg) !important; color: var(--mg) !important;
+    }
+  </style>
 </head>
 <body>
+
+  <!-- Navbar -->
   <nav class="navbar navbar-expand-lg navbar-dark fixed-top top-nav">
     <div class="container">
-      <a class="navbar-brand marca" href="#">INDEL · 3.º DS «B» · Día 3 (v1.0)</a>
+      <a class="navbar-brand marca" href="#">🚀 INDEL · 3.º DS «B» · Lanzamiento v1.0</a>
       <div class="d-flex align-items-center gap-3">
-        <button id="btnTema" class="btn btn-sm btn-outline-info rounded-pill px-3" type="button">☀️ Modo Claro</button>
+        <button id="btnTema" class="btn btn-sm btn-outline-info rounded-pill px-4" type="button">☀️ Modo Claro</button>
       </div>
     </div>
   </nav>
 
+  <!-- Hero Portada -->
   <header class="hero-section">
     <div class="container text-center">
-      <span class="header-badge animate-pulse">🚀 Día 3 · Lanzamiento Oficial v1.0</span>
-      <h1 class="display-5 fw-bold mt-2">Portal de Repaso Académico</h1>
-      <p class="lead text-muted mx-auto" style="max-width: 650px;">
-        Versión final interactiva con buscador en tiempo real, filtros por docente, barra de progreso persistente en localStorage y quiz avanzado con retroalimentación.
+      <span class="header-badge">⭐ Día 3 · Feria de Portales y Lanzamiento v1.0</span>
+      <h1 class="display-5 fw-bold mt-3 font-orbitron text-white">Portal de Repaso Académico</h1>
+      <p class="lead text-muted mx-auto" style="max-width: 700px;">
+        Plataforma oficial interactiva integrada con buscador dinámico en tiempo real, filtros por docente, barra de progreso persistente y banco de preguntas de quiz con retroalimentación inmediata.
       </p>
       
+      <!-- Barra de Progreso -->
       <div class="row justify-content-center mt-4">
         <div class="col-md-8">
-          <div class="d-flex justify-content-between align-items:center mb-1">
-            <span id="textoProgreso" class="small fw-semibold text-cyan">Progreso global del repaso: 0%</span>
-            <span class="small text-muted">Meta: 100% Repasado</span>
+          <div class="d-flex justify-content-between align-items:center mb-2">
+            <span id="textoProgreso" class="small fw-bold text-cyan">Progreso global del repaso: 0%</span>
+            <span class="small text-muted">Meta: 100% Completado</span>
           </div>
-          <div class="progress" style="height: 10px; background: var(--panel2); border: 1px solid var(--line);">
-            <div id="barraProgreso" class="progress-bar bg-gradient-cyan" role="progressbar" style="width: 0%; transition: width 0.4s ease;"></div>
+          <div class="progress" style="height: 12px; background: var(--panel2); border: 1px solid var(--line); border-radius: 99px; overflow: hidden;">
+            <div id="barraProgreso" class="progress-bar bg-info bg-gradient" role="progressbar" style="width: 0%; transition: width 0.4s ease;"></div>
           </div>
         </div>
       </div>
     </div>
   </header>
 
+  <!-- Main Contenido -->
   <main class="container my-5">
+    <!-- Controles de Búsqueda y Filtros -->
     <div class="controls-bar shadow-lg">
       <div class="row g-3 align-items-center w-100 m-0">
         <div class="col-lg-5 p-0">
@@ -52,22 +205,25 @@
         </div>
         <div class="col-lg-7 p-0 d-flex justify-content-lg-end flex-wrap gap-2">
           <div class="filter-chips">
-            <button class="chip-btn active" data-filter="all">Todos</button>
-            <button class="chip-btn" data-filter="Francisco Arcides">Profe Francisco</button>
-            <button class="chip-btn" data-filter="Javier Mineros">Profe Javier</button>
+            <button class="chip-btn active" data-filter="all">Todos los Módulos</button>
+            <button class="chip-btn" data-filter="Francisco Arcides">Profe Francisco Arcides</button>
+            <button class="chip-btn" data-filter="Javier Mineros">Profe Javier Mineros</button>
           </div>
         </div>
       </div>
     </div>
 
-    <div class="d-flex justify-content-between align-items-center mb-3 px-2">
+    <!-- Contador de Resultados -->
+    <div class="d-flex justify-content-between align-items: center mb-3 px-2">
       <h2 class="h5 text-cyan mb-0 font-orbitron">Módulos Oficiales del Año</h2>
       <span id="contadorModulos" class="small text-muted">Mostrando 0 módulos</span>
     </div>
 
+    <!-- Contenedor Dinámico -->
     <section class="grid-modulos" id="modulosContainer"></section>
   </main>
 
+  <!-- Modal de Ficha y Quiz -->
   <dialog id="fichaModal" class="modal-cyber">
     <div class="modal-header">
       <h2 id="modalTitle" class="h4">Nombre del Módulo</h2>
@@ -76,6 +232,7 @@
     <div id="modalBody" class="modal-body-content"></div>
   </dialog>
 
+  <!-- Footer -->
   <footer class="text-center py-4 border-top border-secondary mt-5">
     <div class="container">
       <p class="mb-1 text-muted"><b>Instituto Nacional Cantón Lourdes (INDEL)</b> · 3.º Bachillerato Técnico Vocacional en Desarrollo de Software «B»</p>
@@ -83,8 +240,585 @@
     </div>
   </footer>
 
+  <!-- Bootstrap JS -->
   <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>
-  <script src="js/modulos.js"></script>
-  <script src="js/app.js"></script>
+  
+  <!-- Base de datos completa integrada para evitar fallos de carga en red o rutas -->
+  <script>
+    const modulosData = [
+      {
+        id: "btv-3-1",
+        nombre: "BTVDS 3.1: Desarrollo de aplicaciones de software para la solución de problemas",
+        docente: "Francisco Arcides",
+        resumen: "Construcción de soluciones de software robustas aplicando programación orientada a objetos, acceso a datos y Razor Pages.",
+        aprendizajes: [
+          "Implementación de Programación Orientada a Objetos (POO), herencia y polimorfismo.",
+          "Acceso a datos y conexión con bases de datos relacionales.",
+          "Desarrollo de aplicaciones utilizando Code First y ASP.NET Razor."
+        ],
+        instrumentos: ["Rúbrica de Prácticas de POO", "Evaluación de Prototipo Funcional de Software"],
+        programas: ["Visual Studio", "Visual Studio Code", "SQL Server"],
+        herramientas: ["C#", ".NET", "ASP.NET Razor", "Entity Framework"],
+        recursos: [
+          { nombre: "Documentación oficial de .NET", url: "https://learn.microsoft.com/es-es/dotnet/" },
+          { nombre: "MDN Web Docs - C# & Web", url: "https://developer.mozilla.org/es/" }
+        ],
+        evidencias: "https://github.com/MarvinLop/GitHubPage",
+        quiz: [
+          {
+            pregunta: "¿Qué patrón o enfoque de bases de datos se utiliza con ASP.NET para mapear clases a tablas de forma automática?",
+            opciones: ["Code First", "Manual Directo con Archivos Planos", "Consultas directas sin modelo", "Estructura NoSQL Estática"],
+            correcta: 0,
+            explicacion: "Code First permite definir el modelo escribiendo clases en C# y generando la base de datos automáticamente."
+          },
+          {
+            pregunta: "¿Qué principio de la POO permite que una clase herede propiedades y métodos de otra?",
+            opciones: ["Encapsulamiento", "Herencia", "Polimorfismo", "Abstracción"],
+            correcta: 1,
+            explicacion: "La herencia permite reutilizar código haciendo que una clase hija herede de una clase padre."
+          },
+          {
+            pregunta: "¿Qué tecnología de vistas se utiliza en ASP.NET Core para integrar HTML y C# de forma fluida?",
+            opciones: ["ASP.NET Razor", "PHP Nativo", "JSP Standard", "Ruby on Rails"],
+            correcta: 0,
+            explicacion: "Razor es la sintaxis de marcado que permite insertar código basado en .NET en páginas web."
+          }
+        ]
+      },
+      {
+        id: "mod-2-moviles",
+        nombre: "Módulo 2: Desarrollo de componentes para dispositivos móviles",
+        docente: "Francisco Arcides",
+        resumen: "Diseño y desarrollo de interfaces y componentes interactivos para plataformas móviles utilizando .NET MAUI y XAML.",
+        aprendizajes: [
+          "Creación de interfaces multiplataforma eficientes con .NET MAUI.",
+          "Desarrollo y estructuración de prácticas enfocadas en componentes móviles (Prácticas 6 a 9).",
+          "Optimización y pruebas de rendimiento en emuladores de dispositivos."
+        ],
+        instrumentos: ["Lista de cotejo para Prácticas .NET MAUI", "Autoevaluación Práctica 9"],
+        programas: ["Visual Studio", "Emulador de Android / iOS"],
+        herramientas: [".NET MAUI", "C#", "XAML"],
+        recursos: [
+          { nombre: "Documentación oficial de .NET MAUI", url: "https://learn.microsoft.com/es-es/dotnet/maui/" }
+        ],
+        evidencias: "https://github.com/MarvinLop/GitHubPage",
+        quiz: [
+          {
+            pregunta: "¿Qué framework multiplataforma moderno de Microsoft se utiliza para desarrollar aplicaciones móviles en este módulo?",
+            opciones: ["Flutter", ".NET MAUI", "React Native", "Xamarin Classic"],
+            correcta: 1,
+            explicacion: ".NET MAUI es la evolución oficial para crear apps nativas multiplataforma con C# y XAML."
+          },
+          {
+            pregunta: "¿Qué lenguaje basado en XML se utiliza en .NET MAUI para diseñar la estructura visual de las interfaces?",
+            opciones: ["XAML", "HTML5", "JSON", "Markdown"],
+            correcta: 0,
+            explicacion: "XAML es el lenguaje de marcado basado en XML empleado para inicializar instancias y propiedades de objetos."
+          },
+          {
+            pregunta: "¿Dónde se ejecutan comúnmente las pruebas de rendimiento y despliegue de los componentes móviles desarrollados?",
+            opciones: ["Emuladores de dispositivos / Dispositivos físicos", "Bloc de notas estático", "Servidores FTP remotos", "Consolas de comandos de texto plano"],
+            correcta: 0,
+            explicacion: "Los emuladores o dispositivos conectados permiten validar el comportamiento táctil y visual en tiempo real."
+          }
+        ]
+      },
+      {
+        id: "mod-3-ingles",
+        nombre: "Módulo 3: Conversación de inglés sobre mantenimiento de sistemas informáticos",
+        docente: "Francisco Arcides",
+        resumen: "Aplicación de vocabulario técnico en inglés enfocado en metodologías ágiles de desarrollo y soporte informático.",
+        aprendizajes: [
+          "Dominio de términos técnicos en inglés para soporte y mantenimiento de sistemas.",
+          "Aplicación de marcos de trabajo ágiles (Scrum) y operaciones CRUD con enfoque técnico bilingüe."
+        ],
+        instrumentos: ["Evaluación de Práctica 10 (Scrum)", "Guía de Práctica 11 (Base de datos CRUD-IA)"],
+        programas: ["Plataformas de desarrollo y comunicación"],
+        herramientas: ["Scrum Framework", "Glosarios técnicos bilingües"],
+        recursos: [
+          { nombre: "Microsoft Learn Documentation", url: "https://learn.microsoft.com/es-es/" }
+        ],
+        evidencias: "https://github.com/MarvinLop/GitHubPage",
+        quiz: [
+          {
+            pregunta: "¿Qué marco de trabajo ágil se aborda en las prácticas y terminología técnica de este módulo?",
+            opciones: ["Scrum", "Waterfall Tradicional", "Prince2", "Modelo en Cascada Estricto"],
+            correcta: 0,
+            explicacion: "Scrum es el framework ágil estándar basado en iteraciones (sprints) para la gestión de proyectos tecnológicos."
+          },
+          {
+            pregunta: "¿Qué significan las siglas CRUD en operaciones de bases de datos y soporte técnico?",
+            opciones: ["Create, Read, Update, Delete", "Compile, Run, Undergo, Debug", "Control, Rate, Use, Data", "Copy, Restore, Upload, Drive"],
+            correcta: 0,
+            explicacion: "CRUD representa las cuatro operaciones básicas de almacenamiento persistente: Crear, Leer, Actualizar y Borrar."
+          },
+          {
+            pregunta: "¿Por qué es importante el dominio del vocabulario técnico en inglés en el desarrollo de software?",
+            opciones: ["Para leer documentación oficial, APIs y colaborar en equipos globales", "Para escribir código más rápido en el teclado", "Para evitar el uso de bases de datos", "Para compilar archivos ejecutables .exe"],
+            correcta: 0,
+            explicacion: "La gran mayoría de la documentación de tecnologías y estándares de la industria se encuentra originalmente en inglés."
+          }
+        ]
+      },
+      {
+        id: "mod-4-empresa",
+        nombre: "Módulo 4: Puesta en marcha de la empresa en asociatividad cooperativa",
+        docente: "Francisco Arcides",
+        resumen: "Estructuración de modelos de negocio tecnológicos, plataformas de comercio electrónico y proyectos de desarrollo integral.",
+        aprendizajes: [
+          "Implementación de tiendas virtuales y plataformas de comercio electrónico con Prestashop.",
+          "Desarrollo de proyectos utilizando WinForms, ASPX y .NET MAUI en un entorno cooperativo.",
+          "Integración de prototipos con hardware (Proyectos tipo Arduino y Agusine)."
+        ],
+        instrumentos: ["Rúbrica de Proyecto Final .NET MAUI", "Evaluación de Prestashop Individual", "Guía de Proyecto Winform y ASPX"],
+        programas: ["Visual Studio", "Prestashop", "XAMPP"],
+        herramientas: ["PHP", "MySQL", "WinForms", "ASPX", "Arduino"],
+        recursos: [
+          { nombre: "Prestashop DevDocs", url: "https://devdocs.prestashop-project.org/" },
+          { nombre: "Portal MIPYME", url: "https://www.minec.gob.sv" }
+        ],
+        evidencias: "https://github.com/MarvinLop/GitHubPage",
+        quiz: [
+          {
+            pregunta: "¿Qué plataforma de comercio electrónico open-source se implementa para la creación de tiendas virtuales?",
+            opciones: ["Prestashop", "WordPress Básico", "Excel Sheets", "Access DB"],
+            correcta: 0,
+            explicacion: "Prestashop es una robusta solución de comercio electrónico de código abierto para la gestión de tiendas online."
+          },
+          {
+            pregunta: "¿Qué entorno de servicios locales se utiliza habitualmente para desplegar bases de datos MySQL y PHP?",
+            opciones: ["XAMPP", "Microsoft Word", "Notepad++", "Adobe Photoshop"],
+            correcta: 0,
+            explicacion: "XAMPP provee Apache y MySQL localmente para pruebas de desarrollo web."
+          },
+          {
+            pregunta: "¿Cuál es el enfoque principal de las cooperativas tecnológicas según este módulo?",
+            opciones: ["Asociatividad y asociarse para proyectos tecnológicos escalables", "Vender hardware usado sin garantía", "Únicamente diseñar folletos impresos", "Crear videojuegos sin base de datos"],
+            correcta: 0,
+            explicacion: "La asociatividad cooperativa impulsa modelos de negocio solidarios y tecnológicos conjuntos."
+          }
+        ]
+      },
+      {
+        id: "mod-3-0",
+        nombre: "Módulo 3.0: Orientación de estudiantes al proceso educativo del tercer año",
+        docente: "Javier Mineros",
+        resumen: "Inducción, organización de equipos de trabajo y lineamientos generales del proceso educativo del tercer año de bachillerato.",
+        aprendizajes: [
+          "Establecimiento y organización de equipos de trabajo efectivos.",
+          "Manejo de normativas, portafolios y espacios de códigos QR institucionales."
+        ],
+        instrumentos: ["Guía de orientación", "Portafolio del Módulo 3.0"],
+        programas: ["Google Classroom", "Google Drive"],
+        herramientas: ["Plataformas institucionales", "Herramientas colaborativas"],
+        recursos: [
+          { nombre: "Portal Clases INDEL", url: "https://clases.edu.sv" }
+        ],
+        evidencias: "https://github.com/MarvinLop/GitHubPage",
+        quiz: [
+          {
+            pregunta: "¿Cuál es el propósito principal de este módulo de orientación inicial?",
+            opciones: ["Establecer lineamientos y equipos de trabajo del tercer año", "Programar en C++ avanzado", "Instalar redes físicas de fibra óptica", "Configurar servidores DNS globales"],
+            correcta: 0,
+            explicacion: "Permite alinear las expectativas, normativas y organización de equipos para todo el año académico."
+          },
+          {
+            pregunta: "¿Qué herramientas institucionales se emplean para la gestión de portafolios y entregas?",
+            opciones: ["Google Classroom y Google Drive", "TikTok e Instagram", "Steam y Epic Games", "Spotify y Netflix"],
+            correcta: 0,
+            explicacion: "Google Classroom centraliza las tareas y guías educativas oficiales de la institución."
+          },
+          {
+            pregunta: "¿Por qué es clave la organización de equipos al inicio del año técnico?",
+            opciones: ["Para garantizar la eficiencia en el desarrollo de proyectos y coevaluaciones", "Para trabajar una sola persona todo el año", "Para evitar usar computadoras", "Para no entregar tareas grupales"],
+            correcta: 0,
+            explicacion: "Los proyectos complejos del tercer año requieren división de roles y trabajo colaborativo."
+          }
+        ]
+      },
+      {
+        id: "mod-3-2",
+        nombre: "Módulo 3.2: Mantenimiento y aseguramiento de la operación del sistema informático",
+        docente: "Javier Mineros",
+        resumen: "Diagnóstico, modelado UML, plantillas SLA, control de monitoreo y creación de dashboards y planes de contingencia.",
+        aprendizajes: [
+          "Modelado de software mediante diagramas UML y uso de plantillas SLA.",
+          "Creación de dashboards de monitoreo, registro y planes de contingencia técnica.",
+          "Ejecución de prácticas de mantenimiento preventivo y correctivo."
+        ],
+        instrumentos: ["Rúbrica de Dashboard y Práctica", "Evaluación de Modelado UML y Plantilla SLA"],
+        programas: ["Visual Studio Code", "Herramientas de Monitoreo", "Herramientas de Diagramación"],
+        herramientas: ["UML", "SLA", "Dashboards técnicos"],
+        recursos: [
+          { nombre: "Microsoft Learn", url: "https://learn.microsoft.com/es-es/" }
+        ],
+        evidencias: "https://github.com/MarvinLop/GitHubPage",
+        quiz: [
+          {
+            pregunta: "¿Qué significan las siglas SLA en el contexto de aseguramiento de la operación y soporte técnico?",
+            opciones: ["Service Level Agreement (Acuerdo de Nivel de Servicio)", "System Local Architecture", "Secure Log Access", "Standard Line Application"],
+            correcta: 0,
+            explicacion: "Un SLA es un contrato que compromete al proveedor a cumplir ciertos niveles de calidad y respuesta."
+          },
+          {
+            pregunta: "¿Para qué se utilizan los diagramas UML en el diseño de sistemas?",
+            opciones: ["Para modelar la estructura y comportamiento de los sistemas de software", "Para calcular impuestos salariales", "Para diseñar logotipos en 3D", "Para editar videos institucionales"],
+            correcta: 0,
+            explicacion: "UML estandariza la visualización y documentación del diseño orientado a objetos."
+          },
+          {
+            pregunta: "¿Cuál es la diferencia entre mantenimiento preventivo y correctivo?",
+            opciones: ["El preventivo evita fallas antes de que ocurran; el correctivo repara el fallo tras producirse", "Son exactamente lo mismo", "El correctivo se hace con aceite y el preventivo con formateo", "El preventivo solo aplica a redes de fibra"],
+            correcta: 0,
+            explicacion: "El preventivo anticipa problemas; el correctivo soluciona averías existentes."
+          }
+        ]
+      },
+      {
+        id: "mod-3-3",
+        nombre: "Módulo 3.3: Administración de Bases de Datos",
+        docente: "Javier Mineros",
+        resumen: "Gestión, optimización y ejecución de bases de datos relacionales, herramientas de análisis con Power BI y actividades remediales.",
+        aprendizajes: [
+          "Instalación y configuración de motores de bases de datos y Power BI.",
+          "Ejecución de consultas avanzadas, reportes y actividades de recuperación.",
+          "Implementación de dashboards analíticos y control de datos."
+        ],
+        instrumentos: ["Rúbrica de Ejecución de Base de Datos", "Evaluación de Actividad Power BI"],
+        programas: ["SQL Server", "Power BI", "MySQL Workbench"],
+        herramientas: ["SQL", "Power BI Desktop", "Transact-SQL"],
+        recursos: [
+          { nombre: "Documentación oficial de MySQL", url: "https://dev.mysql.com/doc/" },
+          { nombre: "Microsoft Power BI Docs", url: "https://learn.microsoft.com/es-es/power-bi/" }
+        ],
+        evidencias: "https://github.com/MarvinLop/GitHubPage",
+        quiz: [
+          {
+            pregunta: "¿Qué herramienta líder de Microsoft se utiliza para el análisis de datos y la creación de dashboards visuales interactivos?",
+            opciones: ["Power BI", "Bloc de notas", "MS Paint", "Notepad++"],
+            correcta: 0,
+            explicacion: "Power BI permite conectar múltiples fuentes para generar visualizaciones y reportes gerenciales."
+          },
+          {
+            pregunta: "¿Qué lenguaje se utiliza para consultar y manipular bases de datos relacionales?",
+            opciones: ["SQL (Structured Query Language)", "HTML", "CSS", "Python Script"],
+            correcta: 0,
+            explicacion: "SQL es el lenguaje estándar para gestionar bases de datos relacionales."
+          },
+          {
+            pregunta: "¿Cuál es la utilidad de un índice en una base de datos relacional?",
+            opciones: ["Acelerar la recuperación de consultas en las tablas", "Ocultar la contraseña de administrador", "Borrar registros duplicados automáticamente", "Comprimir el disco duro"],
+            correcta: 0,
+            explicacion: "Los índices mejoran drásticamente la velocidad de búsqueda a costo de algo de espacio en disco."
+          }
+        ]
+      },
+      {
+        id: "mod-3-4",
+        nombre: "Módulo 3.4: Elaboración de documentación de Sistemas informáticos",
+        docente: "Javier Mineros",
+        resumen: "Creación de guías en Python, arquitectura de software, arquitectura en fases y documentación técnica de proyectos.",
+        aprendizajes: [
+          "Desarrollo de aplicaciones y guías individuales utilizando Python.",
+          "Documentación estructurada por fases: Arquitectura del software, desarrollo y documentos finales.",
+          "Elaboración de manuales y especificaciones técnicas."
+        ],
+        instrumentos: ["Rúbrica de Fases de Documentación (Fase 1 a Fase 7)", "Evaluación de Guía Python"],
+        programas: ["Visual Studio Code", "Python Interpreter", "Editores de Markdown"],
+        herramientas: ["Python", "Markdown", "Diagramas de Arquitectura"],
+        recursos: [
+          { nombre: "Documentación oficial de Python", url: "https://docs.python.org/es/3/" }
+        ],
+        evidencias: "https://github.com/MarvinLop/GitHubPage",
+        quiz: [
+          {
+            pregunta: "¿Qué lenguaje de programación versátil se emplea en las guías individuales y automatización de este módulo?",
+            opciones: ["Python", "Assembly", "Fortran 77", "COBOL"],
+            correcta: 0,
+            explicacion: "Python destaca por su sintaxis limpia y gran ecosistema para guías y scripts."
+          },
+          {
+            pregunta: "¿Qué formato ligero de marcado se utiliza frecuentemente para redactar documentación en repositorios como GitHub?",
+            opciones: ["Markdown (.md)", "Ejecutable (.exe)", "Comprimido (.zip)", "Hoja de cálculo (.xlsx)"],
+            correcta: 0,
+            explicacion: "Markdown es el estándar para archivos README y documentación técnica en GitHub."
+          },
+          {
+            pregunta: "¿Por qué es crucial estructurar la documentación por fases en un proyecto de software?",
+            opciones: ["Para mantener orden, trazabilidad y claridad desde el análisis hasta la entrega", "Para hacer el código más pesado", "Para evitar hacer pruebas", "Para ocultar errores al profesor"],
+            correcta: 0,
+            explicacion: "La documentación por fases asegura que ningún requerimiento o arquitectura quede sin auditar."
+          }
+        ]
+      },
+      {
+        id: "mod-3-8",
+        nombre: "Módulo 3.8: Proyecto innovador de Desarrollo de Software",
+        docente: "Javier Mineros",
+        resumen: "Desarrollo, avance, prácticas semanales, manuales de sistema y entrega final del proyecto tecnológico innovador.",
+        aprendizajes: [
+          "Gestión de avances de proyectos (10%, 15% y entregas finales).",
+          "Elaboración de manuales de sistema y prácticas orientadas a resultados.",
+          "Defensa y exposición de proyectos de desarrollo de software."
+        ],
+        instrumentos: ["Rúbrica de Entrega Final de Proyecto", "Evaluación de Avances e Informes"],
+        programas: ["Visual Studio Code", "Git", "GitHub Pages"],
+        herramientas: ["Control de versiones", "HTML/CSS/JS", "Documentación de proyectos"],
+        recursos: [
+          { nombre: "MDN Web Docs", url: "https://developer.mozilla.org/es/" },
+          { nombre: "GitHub Pages Documentation", url: "https://docs.github.com/es/pages" }
+        ],
+        evidencias: "https://github.com/MarvinLop/GitHubPage",
+        quiz: [
+          {
+            pregunta: "¿Qué servicio gratuito de hospedaje se utiliza para publicar este portal web interactivo?",
+            opciones: ["GitHub Pages", "Un disco duro local sin red", "FTP anónimo básico", "Servidor de pruebas offline"],
+            correcta: 0,
+            explicacion: "GitHub Pages permite alojar sitios web estáticos de forma directa y pública."
+          },
+          {
+            pregunta: "¿Qué herramienta de control de versiones se utiliza para gestionar commits, ramas y fusiones en equipo?",
+            opciones: ["Git", "Microsoft Word", "Photoshop", "VLC Player"],
+            correcta: 0,
+            explicacion: "Git es el sistema de control de versiones distribuido estándar en la industria."
+          },
+          {
+            pregunta: "¿Cuál es el objetivo de la defensa y exposición del proyecto en la feria?",
+            opciones: ["Demostrar dominio técnico individual y colectivo de la solución construida", "Únicamente entregar un documento impreso sin explicación", "Jugar videojuegos en la computadora", "Ninguna de las anteriores"],
+            correcta: 0,
+            explicacion: "La defensa evalúa el dominio individual y el funcionamiento real del software entregado."
+          }
+        ]
+      }
+    ];
+
+    document.addEventListener("DOMContentLoaded", () => {
+      const container = document.getElementById("modulosContainer");
+      const modal = document.getElementById("fichaModal");
+      const modalBody = document.getElementById("modalBody");
+      const modalTitle = document.getElementById("modalTitle");
+      const btnClose = document.getElementById("btnCloseModal");
+      const searchInput = document.getElementById("searchInput");
+      const filterBtns = document.querySelectorAll(".chip-btn");
+      const btnTema = document.getElementById("btnTema");
+      const barraProgreso = document.getElementById("barraProgreso");
+      const textoProgreso = document.getElementById("textoProgreso");
+
+      let currentFilter = "all";
+
+      // Tema Claro / Oscuro
+      const temaGuardado = localStorage.getItem("theme_indel_v2") || "dark";
+      document.documentElement.setAttribute("data-theme", temaGuardado);
+      btnTema.textContent = temaGuardado === "dark" ? "☀️ Modo Claro" : "🌙 Modo Oscuro";
+
+      btnTema.addEventListener("click", () => {
+        const actual = document.documentElement.getAttribute("data-theme");
+        const nuevo = actual === "dark" ? "light" : "dark";
+        document.documentElement.setAttribute("data-theme", nuevo);
+        localStorage.setItem("theme_indel_v2", nuevo);
+        btnTema.textContent = nuevo === "dark" ? "☀️ Modo Claro" : "🌙 Modo Oscuro";
+      });
+
+      function actualizarProgresoGlobal() {
+        let total = modulosData.length;
+        let completados = 0;
+        modulosData.forEach(m => {
+          if (localStorage.getItem("repasado_v2_" + m.id) === "true") {
+            completados++;
+          }
+        });
+        const porcentaje = total > 0 ? Math.round((completados / total) * 100) : 0;
+        if (barraProgreso) barraProgreso.style.width = porcentaje + "%";
+        if (textoProgreso) textoProgreso.textContent = `Progreso global del repaso: ${porcentaje}% (${completados} de ${total} módulos)`;
+      }
+
+      function normalizar(texto) {
+        if (!texto) return "";
+        return texto.normalize("NFD").replace(/[\u0300-\u036f]/g, "").toLowerCase();
+      }
+
+      function renderModulos() {
+        if (!container) return;
+        container.innerHTML = "";
+        const searchTerm = normalizar(searchInput ? searchInput.value.trim() : "");
+
+        const filtered = modulosData.filter((mod) => {
+          const matchDocente = currentFilter === "all" || mod.docente === currentFilter;
+          const matchSearch =
+            normalizar(mod.nombre).includes(searchTerm) ||
+            normalizar(mod.resumen).includes(searchTerm) ||
+            mod.herramientas.some((h) => normalizar(h).includes(searchTerm));
+
+          return matchDocente && matchSearch;
+        });
+
+        const contador = document.getElementById("contadorModulos");
+        if (contador) contador.textContent = `Mostrando ${filtered.length} de ${modulosData.length} módulos`;
+
+        if (filtered.length === 0) {
+          container.innerHTML = `<p style="color:var(--mut); text-align:center; grid-column: 1/-1; padding:40px; font-size:1.1rem;">No se encontraron módulos que coincidan con la búsqueda.</p>`;
+          return;
+        }
+
+        filtered.forEach((mod) => {
+          const repasadoKey = "repasado_v2_" + mod.id;
+          const estaRepasado = localStorage.getItem(repasadoKey) === "true";
+
+          const card = document.createElement("article");
+          card.className = "card-modulo";
+          card.innerHTML = `
+            <div>
+              <div class="docente-badge">⚡ ${mod.docente}</div>
+              <h3>${mod.nombre}</h3>
+              <p>${mod.resumen}</p>
+            </div>
+            <div>
+              <div class="card-footer-actions">
+                <label class="chk-repasado">
+                  <input type="checkbox" class="chk-estado" data-id="${mod.id}" ${estaRepasado ? "checked" : ""}>
+                  <span>Repasado</span>
+                </label>
+                <button class="btn-ver" data-id="${mod.id}">Ver Ficha y Quiz Pro</button>
+              </div>
+            </div>
+          `;
+          container.appendChild(card);
+        });
+
+        actualizarProgresoGlobal();
+      }
+
+      if (searchInput) searchInput.addEventListener("input", renderModulos);
+
+      filterBtns.forEach((btn) => {
+        btn.addEventListener("click", () => {
+          filterBtns.forEach((b) => b.classList.remove("active"));
+          btn.classList.add("active");
+          currentFilter = btn.getAttribute("data-filter");
+          renderModulos();
+        });
+      });
+
+      if (container) {
+        container.addEventListener("change", (e) => {
+          if (e.target.classList.contains("chk-estado")) {
+            const id = e.target.getAttribute("data-id");
+            localStorage.setItem("repasado_v2_" + id, e.target.checked);
+            actualizarProgresoGlobal();
+          }
+        });
+
+        container.addEventListener("click", (e) => {
+          if (e.target.classList.contains("btn-ver")) {
+            const id = e.target.getAttribute("data-id");
+            const mod = modulosData.find((m) => m.id === id);
+            if (mod) abrirFicha(mod);
+          }
+        });
+      }
+
+      function abrirFicha(mod) {
+        if (!modalTitle || !modalBody || !modal) return;
+        modalTitle.textContent = mod.nombre;
+        
+        let quizHTML = "";
+        if (mod.quiz && Array.isArray(mod.quiz)) {
+          mod.quiz.forEach((q, qIndex) => {
+            let opcionesHTML = "";
+            q.opciones.forEach((opcion, oIndex) => {
+              opcionesHTML += `
+                <button class="quiz-opcion" data-qindex="${qIndex}" data-correcta="${oIndex === q.correcta}">
+                  ${opcion}
+                </button>
+              `;
+            });
+
+            quizHTML += `
+              <div class="quiz-pregunta-block" data-qblock="${qIndex}">
+                <p style="font-size:1rem; margin-bottom:12px; font-weight:700; color:var(--tx);">Pregunta ${qIndex + 1}: ${q.pregunta}</p>
+                <div class="opciones-grupo">${opcionesHTML}</div>
+                <p class="quiz-feedback-single mt-3 fw-bold" style="font-size:0.92rem; min-height:22px;"></p>
+              </div>
+            `;
+          });
+        }
+
+        modalBody.innerHTML = `
+          <div class="modal-section">
+            <h4>Resumen Ejecutivo</h4>
+            <p style="color:var(--mut);">${mod.resumen}</p>
+          </div>
+          <div class="modal-section">
+            <h4>Aprendizajes Clave</h4>
+            <ul>${mod.aprendizajes.map((item) => `<li>${item}</li>`).join("")}</ul>
+          </div>
+          <div class="modal-section">
+            <h4>Instrumentos de Evaluación</h4>
+            <div class="tags">${mod.instrumentos.map((inst) => `<span class="tag">${inst}</span>`).join("")}</div>
+          </div>
+          <div class="modal-section">
+            <h4>Programas y Herramientas</h4>
+            <div class="tags">
+              ${mod.programas.map((prog) => `<span class="tag" style="border-color:var(--mg);">${prog}</span>`).join("")}
+              ${mod.herramientas.map((h) => `<span class="tag" style="border-color:var(--cy);">${h}</span>`).join("")}
+            </div>
+          </div>
+          <div class="modal-section">
+            <h4>Recursos y Evidencias</h4>
+            <ul>
+              ${mod.recursos.map((r) => `<li><a href="${r.url}" target="_blank" rel="noopener" style="color:var(--cy);">${r.nombre}</a></li>`).join("")}
+              <li><a href="${mod.evidencias}" target="_blank" rel="noopener" style="color:var(--gr);">Ver repositorio del proyecto</a></li>
+            </ul>
+          </div>
+          <div class="quiz-box">
+            <h4 style="color:var(--cy); margin-bottom:16px; border-left-color:var(--cy);">🧠 Banco de Preguntas Interactivo del Módulo</h4>
+            <div id="quizContainer">${quizHTML}</div>
+          </div>
+        `;
+
+        const quizContainer = modalBody.querySelector("#quizContainer");
+
+        quizContainer.addEventListener("click", (evt) => {
+          const btnOpcion = evt.target.closest(".quiz-opcion");
+          if (btnOpcion && !btnOpcion.disabled) {
+            const bloque = btnOpcion.closest("[data-qblock]");
+            const qIndex = parseInt(bloque.getAttribute("data-qblock"));
+            const preguntaData = mod.quiz[qIndex];
+            const esCorrecta = btnOpcion.getAttribute("data-correcta") === "true";
+            const botones = bloque.querySelectorAll(".quiz-opcion");
+            const feedback = bloque.querySelector(".quiz-feedback-single");
+
+            botones.forEach(b => {
+              b.disabled = true;
+              if (b.getAttribute("data-correcta") === "true") {
+                b.classList.add("correcta");
+              } else {
+                b.classList.add("incorrecta");
+              }
+            });
+
+            if (esCorrecta) {
+              feedback.style.color = "var(--gr)";
+              feedback.textContent = "¡Correcto! 🎉 " + preguntaData.explicacion;
+            } else {
+              feedback.style.color = "var(--mg)";
+              feedback.textContent = "Incorrecto. ❌ " + preguntaData.explicacion;
+            }
+          }
+        });
+
+        modal.showModal();
+      }
+
+      if (btnClose) btnClose.addEventListener("click", () => modal.close());
+      if (modal) {
+        modal.addEventListener("click", (e) => {
+          if (e.target === modal) modal.close();
+        });
+      }
+
+      renderModulos();
+    });
+  </script>
 </body>
 </html>
